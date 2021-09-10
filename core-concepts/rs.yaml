@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: lobsters
+  labels:
+    app: lobsters
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: lobsters
+  template:
+    metadata:
+      labels:
+        app: lobsters
+    spec:
+      containers:
+        - image: gcr.io/google-samples/lobsters:1.0
+          name: lobsters
+          ports:
+            - containerPort: 3000
+              name: web
